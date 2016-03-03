@@ -1,0 +1,157 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:TelerikCharts"
+		x:Class="TelerikCharts.MainWindow"
+		xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+		Title="MainWindow" Height="768" Width="1900">
+
+    <Window.Resources>
+    </Window.Resources>
+    
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+            <ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Grid Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="7*" />
+				<ColumnDefinition Width="3*" />
+			</Grid.ColumnDefinitions>
+
+			<telerik:RadCartesianChart x:Name="BarChart" Palette="Forest" >
+				<telerik:BarSeries ItemsSource="{Binding Q1}"
+								 ValueBinding="Performance"
+								 ShowLabels="True" 
+								 CategoryBinding="RepresentativeName">
+
+					<telerik:BarSeries.LegendSettings>
+						<telerik:SeriesLegendSettings Title="Q1, 2010" />
+					</telerik:BarSeries.LegendSettings>
+				</telerik:BarSeries>
+
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:CategoricalAxis Title="Eje Horizontal" ShowLabels="True" GapLength="0.2" />
+                    <!--GapLength = Espacio entre barras--> 
+				</telerik:RadCartesianChart.HorizontalAxis>
+
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:LinearAxis Title="Eje Vertical" ShowLabels="True" LabelFormat="c" />
+				</telerik:RadCartesianChart.VerticalAxis>
+
+				<telerik:RadCartesianChart.Grid>
+					<telerik:CartesianChartGrid MajorLinesVisibility="Y" />
+				</telerik:RadCartesianChart.Grid>
+			</telerik:RadCartesianChart>
+
+			<telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChart}" Grid.Column="1" />
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadPieChart x:Name="PieChart" Palette="Forest" >
+                <telerik:PieSeries ItemsSource="{Binding Q1}"
+								   ValueBinding="Performance"
+								   RadiusFactor="0.77">
+
+                    <telerik:PieSeries.LabelDefinitions>
+                        <telerik:ChartSeriesLabelDefinition Margin="-8,0,0,0" />
+                    </telerik:PieSeries.LabelDefinitions>
+
+                    <telerik:PieSeries.LegendSettings>
+                        <telerik:DataPointLegendSettings TitleBinding="RepresentativeName" />
+                    </telerik:PieSeries.LegendSettings>
+
+                    <telerik:PieSeries.AngleRange>
+                        <telerik:AngleRange StartAngle="270" SweepAngle="360" />
+                    </telerik:PieSeries.AngleRange>
+                </telerik:PieSeries>
+            </telerik:RadPieChart>
+
+            <telerik:RadLegend Items="{Binding LegendItems, ElementName=PieChart}" Grid.Column="1" VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Column="2" Margin="70">
+            <telerik:RadSemicircleNorthGauge telerik:StyleManager.Theme="Windows8">
+                <telerik:SemicircleNorthScale Min="0" Max="100" >
+                    <telerik:RadialScale.Ranges>
+                        <telerik:GaugeRange
+                                Min="0" Max="80"
+                                StartWidth="0.2"
+                                EndWidth="0.2"
+                                Background="LightGray" />
+                        <telerik:GaugeRange
+                                Min="80" Max="100"
+                                StartWidth="0.2"
+                                EndWidth="0.2"
+                                Background="#FF76A476" />
+                    </telerik:RadialScale.Ranges>
+                    <telerik:RadialScale.Indicators>
+                        <telerik:Needle IsAnimated="True" Value="85" />
+                        <telerik:RadialScaleMarker IsAnimated="True" telerik:ScaleObject.Offset="-0.015*" Value="25" Background="Green" />
+                        <telerik:Pinpoint />
+                    </telerik:RadialScale.Indicators>
+                </telerik:SemicircleNorthScale>
+            </telerik:RadSemicircleNorthGauge>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10">
+			<telerik:RadCartesianChart x:Name="LineChart" Palette="Forest">
+                <telerik:LineSeries ItemsSource="{Binding Q1}"
+									  ValueBinding="Performance" 
+									  CategoryBinding="RepresentativeName" >
+                    <telerik:LineSeries.LegendSettings>
+						<telerik:SeriesLegendSettings Title="Rendimiento" />
+					</telerik:LineSeries.LegendSettings>
+				</telerik:LineSeries>
+
+				<telerik:RadCartesianChart.HorizontalAxis>
+					<telerik:CategoricalAxis Title="Eje Horizontal"/>
+				</telerik:RadCartesianChart.HorizontalAxis>
+
+				<telerik:RadCartesianChart.VerticalAxis>
+					<telerik:LinearAxis Title="Eje Vertical" LabelFormat="c" />
+				</telerik:RadCartesianChart.VerticalAxis>
+			</telerik:RadCartesianChart>
+
+			<telerik:RadLegend Items="{Binding LegendItems, ElementName=LineChart}" />
+		</Grid>
+
+		<Grid Grid.Column="1" Grid.Row="1" Margin="10">
+            <telerik:RadCartesianChart x:Name="BarChartHorizontal" Palette="Forest" >
+                <telerik:BarSeries ItemsSource="{Binding Q1}" 
+								 ValueBinding="Performance"
+								 ShowLabels="True" 
+								 CategoryBinding="RepresentativeName">
+				</telerik:BarSeries>
+
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:LinearAxis Title="Eje Vertical" LabelFormat="c" />
+				</telerik:RadCartesianChart.HorizontalAxis>
+
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:CategoricalAxis Title="Eje Horizontal" />
+				</telerik:RadCartesianChart.VerticalAxis>
+
+				<telerik:RadCartesianChart.Grid>
+					<telerik:CartesianChartGrid MajorLinesVisibility="X" />
+				</telerik:RadCartesianChart.Grid>
+			</telerik:RadCartesianChart>
+
+			<telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChartHorizontal}" />
+		</Grid>
+	</Grid>
+</Window>
