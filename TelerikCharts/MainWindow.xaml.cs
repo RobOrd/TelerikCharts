@@ -1,6 +1,7 @@
 ﻿using Charts.Collection;
 using System.Collections.Generic;
 using System.Windows;
+using System;
 
 namespace TelerikCharts
 {
@@ -13,29 +14,31 @@ namespace TelerikCharts
             LoadData();
         }
 
-        private IEnumerable<SimpleVariableGraph> q1;
-        public IEnumerable<SimpleVariableGraph> Q1
+        private IEnumerable<SimpleCategoryGraph> simpleCategory;
+        public IEnumerable<SimpleCategoryGraph> SimpleCategory
         {
             get
             {
-                if (this.q1 == null)
-                {
-                    this.q1 = new List<SimpleVariableGraph>() {
-                        new SimpleVariableGraph("Jason Harley", 17790),
-                        new SimpleVariableGraph("Adam White", 12820),
-                        new SimpleVariableGraph("Barbara Smith", 14350),
-                        new SimpleVariableGraph("Susan Jones", 11150),
-                        new SimpleVariableGraph("Tom Marshall", 11800)
-                    };
-                }
-
-                return this.q1;
+                return this.simpleCategory;
             }
         }
 
         private void LoadData()
         {
+            LoadSimpleVariableData();
+
             this.DataContext = this;
+        }
+
+        private void LoadSimpleVariableData()
+        {
+            this.simpleCategory = new List<SimpleCategoryGraph>() {
+                        new SimpleCategoryGraph("Jason Harley", 17790),
+                        new SimpleCategoryGraph("Adam White", 12820),
+                        new SimpleCategoryGraph("Barbara Smith", 14350),
+                        new SimpleCategoryGraph("Susan Jones", 11150),
+                        new SimpleCategoryGraph("Tom Marshall", 11800)
+                    };
         }
     }
 }

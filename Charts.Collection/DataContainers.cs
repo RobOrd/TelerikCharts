@@ -1,11 +1,11 @@
 ﻿namespace Charts.Collection
 {
-    public class SimpleVariableGraph
+    public class SimpleCategoryGraph
     {
         private string category;
         private double value;
 
-        public SimpleVariableGraph(string category, double value)
+        public SimpleCategoryGraph(string category, double value)
         {
             this.category = category;
             this.value = value;

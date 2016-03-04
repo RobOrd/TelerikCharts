@@ -29,14 +29,14 @@
 			</Grid.ColumnDefinitions>
 
 			<telerik:RadCartesianChart x:Name="BarChart" Palette="Forest" >
-				<telerik:BarSeries ItemsSource="{Binding Q1}"
+				<telerik:BarSeries ItemsSource="{Binding SimpleCategory}"
 								 ValueBinding="Value"
 								 ShowLabels="True" 
 								 CategoryBinding="Category">
 
-					<telerik:BarSeries.LegendSettings>
+					<!--<telerik:BarSeries.LegendSettings>
 						<telerik:SeriesLegendSettings Title="Q1, 2010" />
-					</telerik:BarSeries.LegendSettings>
+					</telerik:BarSeries.LegendSettings>-->
 				</telerik:BarSeries>
 
                 <telerik:RadCartesianChart.HorizontalAxis>
