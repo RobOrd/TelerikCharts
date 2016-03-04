@@ -33,19 +33,14 @@
 								 ValueBinding="Value"
 								 ShowLabels="True" 
 								 CategoryBinding="Category">
-
-					<!--<telerik:BarSeries.LegendSettings>
-						<telerik:SeriesLegendSettings Title="Q1, 2010" />
-					</telerik:BarSeries.LegendSettings>-->
 				</telerik:BarSeries>
 
                 <telerik:RadCartesianChart.HorizontalAxis>
-                    <telerik:CategoricalAxis Title="Eje Horizontal" ShowLabels="True" GapLength="0.2" />
-                    <!--GapLength = Espacio entre barras--> 
+                    <telerik:CategoricalAxis Title="{Binding SimpleCategory.HorizontalTitle}" ShowLabels="True" GapLength="0.2" />
 				</telerik:RadCartesianChart.HorizontalAxis>
 
                 <telerik:RadCartesianChart.VerticalAxis>
-                    <telerik:LinearAxis Title="Eje Vertical" ShowLabels="True" LabelFormat="c" />
+                    <telerik:LinearAxis Title="{Binding SimpleCategory.VerticalTitle}" ShowLabels="True" LabelFormat="c" />
 				</telerik:RadCartesianChart.VerticalAxis>
 
 				<telerik:RadCartesianChart.Grid>
@@ -53,7 +48,7 @@
 				</telerik:RadCartesianChart.Grid>
 			</telerik:RadCartesianChart>
 
-			<telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChart}" Grid.Column="1" />
+            <telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChart}" Grid.Column="1" />
         </Grid>
        
 	</Grid>

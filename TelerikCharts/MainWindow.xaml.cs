@@ -14,8 +14,8 @@ namespace TelerikCharts
             LoadData();
         }
 
-        private IEnumerable<SimpleCategoryGraph> simpleCategory;
-        public IEnumerable<SimpleCategoryGraph> SimpleCategory
+        private SimpleCategoryGraphCollection simpleCategory;
+        public SimpleCategoryGraphCollection SimpleCategory
         {
             get
             {
@@ -32,13 +32,15 @@ namespace TelerikCharts
 
         private void LoadSimpleVariableData()
         {
-            this.simpleCategory = new List<SimpleCategoryGraph>() {
-                        new SimpleCategoryGraph("Jason Harley", 17790),
-                        new SimpleCategoryGraph("Adam White", 12820),
-                        new SimpleCategoryGraph("Barbara Smith", 14350),
-                        new SimpleCategoryGraph("Susan Jones", 11150),
-                        new SimpleCategoryGraph("Tom Marshall", 11800)
-                    };
+            this.simpleCategory = new SimpleCategoryGraphCollection("Employee", "Amount");
+            this.simpleCategory.AddRange(new List<SimpleCategoryGraph>()
+            {
+                new SimpleCategoryGraph("Jason Harley", 17790),
+                new SimpleCategoryGraph("Adam White", 12820),
+                new SimpleCategoryGraph("Barbara Smith", 14350),
+                new SimpleCategoryGraph("Susan Jones", 11150),
+                new SimpleCategoryGraph("Tom Marshall", 11800)
+            });
         }
     }
 }
