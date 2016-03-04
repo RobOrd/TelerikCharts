@@ -136,12 +136,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="References\Telerik.Windows.Controls.Chart.dll" />
     <Content Include="References\Telerik.Windows.Controls.DataVisualization.dll" />
     <Content Include="References\Telerik.Windows.Controls.dll" />
     <Content Include="References\Telerik.Windows.Data.dll" />
+    <Resource Include="TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Charts.Collection\Charts.Collection.csproj">
+      <Project>{e455e3e5-2e16-4ae0-9ede-cb228d59999b}</Project>
+      <Name>Charts.Collection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
