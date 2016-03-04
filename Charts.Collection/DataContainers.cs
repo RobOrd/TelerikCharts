@@ -52,6 +52,13 @@ namespace Charts.Collection
                 return this.category;
             }
         }
+        public string ShortCat
+        {
+            get
+            {
+                return this.category.Substring(0, 4);
+            }
+        }
         public double Value
         {
             get

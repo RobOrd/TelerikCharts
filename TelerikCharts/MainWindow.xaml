@@ -5,9 +5,47 @@
 		xmlns:local="clr-namespace:TelerikCharts"
 		x:Class="TelerikCharts.MainWindow"
 		xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:vm="clr-namespace:Charts.Collection;assembly=Charts.Collection"
+        xmlns:bc="clr-namespace:Telerik.Windows.Controls.DataBars;assembly=Telerik.Windows.Controls.DataVisualization"
 		Title="MainWindow" Height="768" Width="1700">
 
     <Window.Resources>
+        <ResourceDictionary>
+            <!--<SolidColorBrush x:Key="brush1">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="brush2">Red</SolidColorBrush>
+            <SolidColorBrush x:Key="brush3">Blue</SolidColorBrush>
+            <SolidColorBrush x:Key="brush4">Yellow</SolidColorBrush>
+            <SolidColorBrush x:Key="brush5">Cyan</SolidColorBrush>
+            <SolidColorBrush x:Key="brush6">Brown</SolidColorBrush>
+            <SolidColorBrush x:Key="brush7">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="brush8">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="brush9">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="brush10">Green</SolidColorBrush>-->
+
+            <Style x:Key="axisLabelStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="FontSize" Value="9.75" />
+            </Style>
+            <Style x:Key="pointStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI" />
+                <Setter Property="FontSize" Value="9.75" />
+                <Setter Property="Margin" Value="0,-15,0,0" />
+            </Style>
+
+            <vm:RandomBrushConverter x:Key="randBrushConverter" />
+            <bc:BrushCollection x:Key="brushes">
+                <SolidColorBrush>Green</SolidColorBrush>
+                <SolidColorBrush>Red</SolidColorBrush>
+                <SolidColorBrush>Blue</SolidColorBrush>
+                <SolidColorBrush>Yellow</SolidColorBrush>
+                <SolidColorBrush>Cyan</SolidColorBrush>
+                <SolidColorBrush>Brown</SolidColorBrush>
+                <SolidColorBrush>Magenta</SolidColorBrush>
+                <SolidColorBrush>Gray</SolidColorBrush>
+                <SolidColorBrush>Tomato</SolidColorBrush>
+                <SolidColorBrush>Purple</SolidColorBrush>
+            </bc:BrushCollection>
+        </ResourceDictionary>
     </Window.Resources>
     
 	<Grid x:Name="LayoutRoot">
@@ -28,19 +66,24 @@
 				<ColumnDefinition Width="3*" />
 			</Grid.ColumnDefinitions>
 
-			<telerik:RadCartesianChart x:Name="BarChart" Palette="Forest" >
-				<telerik:BarSeries ItemsSource="{Binding SimpleCategory}"
-								 ValueBinding="Value"
-								 ShowLabels="True" 
-								 CategoryBinding="Category">
-				</telerik:BarSeries>
+			<telerik:RadCartesianChart x:Name="BarChart" >
+				<telerik:BarSeries ItemsSource="{Binding SimpleCategory}" ValueBinding="Value" CategoryBinding="ShortCat" >
+                    <telerik:BarSeries.PointTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Value, StringFormat={}{0:c}}" Style="{StaticResource pointStyle}" />
+                                <Rectangle Fill="{Binding Converter={StaticResource randBrushConverter}, ConverterParameter={StaticResource brushes}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </telerik:BarSeries.PointTemplate>
+                </telerik:BarSeries>
 
                 <telerik:RadCartesianChart.HorizontalAxis>
-                    <telerik:CategoricalAxis Title="{Binding SimpleCategory.HorizontalTitle}" ShowLabels="True" GapLength="0.2" />
+                    <telerik:CategoricalAxis Title="{Binding SimpleCategory.HorizontalTitle}" ShowLabels="True" GapLength="0.2" LabelStyle="{StaticResource axisLabelStyle}" />
 				</telerik:RadCartesianChart.HorizontalAxis>
 
                 <telerik:RadCartesianChart.VerticalAxis>
-                    <telerik:LinearAxis Title="{Binding SimpleCategory.VerticalTitle}" ShowLabels="True" LabelFormat="c" />
+                    <telerik:LinearAxis Title="{Binding SimpleCategory.VerticalTitle}" ShowLabels="True" LabelStyle="{StaticResource axisLabelStyle}" LabelFormat="c" />
 				</telerik:RadCartesianChart.VerticalAxis>
 
 				<telerik:RadCartesianChart.Grid>
@@ -48,7 +91,7 @@
 				</telerik:RadCartesianChart.Grid>
 			</telerik:RadCartesianChart>
 
-            <telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChart}" Grid.Column="1" />
+            <!--<telerik:RadLegend Items="{Binding LegendItems, ElementName=BarChart}" Grid.Column="1" />-->
         </Grid>
        
 	</Grid>
